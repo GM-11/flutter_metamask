@@ -14,13 +14,20 @@ class SendTransaction extends StatefulWidget {
 
 class _SendTransactionState extends State<SendTransaction> {
   String message = "";
-  String selectedSenderAdress = "";
+  late String selectedSenderAdress;
 
   final List<String> senderAddresses = [
     "0xC2Ccf39a66FE9DF7e1aD9E599f95a78E90e74617",
     "0x9DD04d98143Ae3C2f71507aD70178Ee7c1867C04",
     "0x26f4F8ba2c6152677fBAAcbF3CF6C41F6563c237",
   ];
+
+
+  @override
+  void initState() {
+    super.initState();
+    selectedSenderAdress = senderAddresses[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,7 @@ class _SendTransactionState extends State<SendTransaction> {
             ),
             DropdownButton<String>(
               isExpanded: true,
-              value: senderAddresses[0], // Set the initial value
+              value: selectedSenderAdress, // Set the initial value
               onChanged: (String? newValue) {
                 setState(() {
                   selectedSenderAdress = newValue!;
